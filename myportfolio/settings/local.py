@@ -1,33 +1,23 @@
+# myportfolio/settings/local.py
 from .base import *
 import os
-import dj_database_url
+# Allow any host during local development
+ALLOWED_HOSTS = ["*"]
 
-ALLOWED_HOSTS = env.list(
-    "ALLOWED_HOSTS",
-    default=[".vercel.app"]
-)
-
+# Use SQLite for local development
 DATABASES = {
-    "default": dj_database_url.parse(
-        os.environ["DATABASE_URL"],
-        conn_max_age=600,
-        ssl_require=True,
-    )
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db/db.sqlite3",
+    }
 }
 
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-X_FRAME_OPTIONS = "DENY"
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATIC_URL = "/static/"
+STATIC_URL = '/static/'
 
-CSRF_TRUSTED_ORIGINS = env.list(
-    "CSRF_TRUSTED_ORIGINS",
-    default=["https://*.vercel.app"]
-)
+CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
+SECURE_SSL_REDIRECT = False
