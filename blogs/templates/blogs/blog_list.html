@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+
+{% block style %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/vs2015.min.css">
+<style>
+  .hljs {
+    background: rgba(30, 27, 75, 0.3); /* Tailwind's bg-purple-900 at 50% */
+    
+  }
+  </style>
+{% endblock %}
+
+{% block content %}
+<section id="blogs" class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          {{ list_type }} <span class="text-purple-400">Blog Posts</span>
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto mb-8"></div>
+        <p class="text-gray-400 text-lg max-w-3xl mx-auto">
+          Thoughts, tutorials, and insights about web development, technology trends, and best practices.
+        </p>
+      </div>
+  
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for blog in blogs %}
+            {% include 'blogs/blog_item.html' %}
+        {% endfor %}
+      </div>
+
+    </div>
+  </section>
+  
+{% endblock %}
+
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+{% endblock %}
