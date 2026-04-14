@@ -11,3 +11,4 @@ pillow==11.2.1
 sorl-thumbnail==12.11.0
 dj-database-url==2.2.0
 psycopg[binary]==3.2.9
+vercel
